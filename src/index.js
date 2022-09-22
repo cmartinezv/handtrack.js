@@ -70,7 +70,7 @@ export async function load(params) {
   return objectDetection;
 }
 
-export function startVideo(video) {
+export function startVideo(video, facingMode) {
   return new Promise(function (resolve, reject) {
     // Video must have height and width in order to be used as input for NN
     // Aspect ratio of 3/4 is used to support safari browser.
@@ -87,7 +87,7 @@ export function startVideo(video) {
       .getUserMedia({
         audio: false,
         video: {
-          facingMode: "user",
+          facingMode: facingMode || "user",
         },
       })
       .then((stream) => {
