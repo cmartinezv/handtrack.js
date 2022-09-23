@@ -120,6 +120,16 @@ export async function stopVideo() {
   }
 }
 
+export async function toggleTorch( toggled ) {
+  if (window.localStream) {
+    const videoTrack = window.localStream.getVideoTracks()[0];
+    await videoTrack.applyConstraints({torch: toggled });
+    console.log(videoTrack.getSettings().torch);
+  } else {
+    return false;
+  }
+}
+
 export class ObjectDetection {
   constructor(modelParams) {
     this.modelPath =
